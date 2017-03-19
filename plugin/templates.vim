@@ -230,8 +230,12 @@ let s:default_template_directory = expand('<sfile>:p:h:h') . '/templates'
 " @param a:ext extension of current file or empty, in which case extension
 " will be automatically detected
 function <SID>InitializeTemplate(...)
-    " Paths to search for templates files
-    let l:tmpl_paths = finddir("templates", ";",-1)
+    " The directory containing the file we want to initialize
+    let l:thisdir = expand('%:p:h')
+
+    " Find all 'templates' directories from the directory containing
+    " this file upwards.
+    let l:tmpl_paths = finddir("templates", l:thisdir . ';',-1)
 
     " user defined search paths
     if (!exists('g:tmpl_search_paths'))
