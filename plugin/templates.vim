@@ -157,6 +157,10 @@ function <SID>ExpandLanguageTemplates()
     call <SID>ExpandTemplate('MACRO_GUARD', l:macro_guard)
     call <SID>ExpandTemplate('MACRO_GUARD_FULL', l:macro_guard_full)
     call <SID>ExpandTemplate('CLASS', l:filename)
+
+    if (exists('g:tmpl_namespace'))
+        call <SID>ExpandTemplate('NAMESPACE', g:tmpl_namespace)
+    endif
 endfunction
 
 function <SID>MoveCursor()
